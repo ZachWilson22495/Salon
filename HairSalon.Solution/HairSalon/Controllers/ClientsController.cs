@@ -7,14 +7,14 @@ namespace HairSalon.Controllers
   public class ClientsController : Controller
   {
 
-    [HttpGet("/categories/{stylistId}/clients/new")]
+    [HttpGet("/stylists/{stylistId}/clients/new")]
     public ActionResult New(int stylistId)
     {
       Stylist stylist = Stylist.Find(stylistId);
       return View(stylist);
     }
 
-    [HttpGet("/categories/{stylistId}/clients/{clientId}")]
+    [HttpGet("/stylists/{stylistId}/clients/{clientId}")]
     public ActionResult Show(int stylistId, int clientId)
     {
       Client client = Client.Find(clientId);
