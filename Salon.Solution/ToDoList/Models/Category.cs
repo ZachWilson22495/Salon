@@ -2,19 +2,19 @@ using System.Collections.Generic;
 
 namespace ToDoList.Models
 {
-  public class Category
+  public class Stylist
   {
-    private static List<Category> _instances = new List<Category> {};
+    private static List<Stylist> _instances = new List<Stylist> {};
     public string Name { get; set; }
     public int Id { get; }
-    public List<Item> Items { get; set; }
+    public List<Client> Clients { get; set; }
 
-    public Category(string categoryName)
+    public Stylist(string stylistName)
     {
-      Name = categoryName;
+      Name = stylistName;
       _instances.Add(this);
       Id = _instances.Count;
-      Items = new List<Item>{};
+      Clients = new List<Client>{};
     }
 
     public static void ClearAll()
@@ -22,19 +22,19 @@ namespace ToDoList.Models
       _instances.Clear();
     }
 
-    public static List<Category> GetAll()
+    public static List<Stylist> GetAll()
     {
       return _instances;
     }
 
-    public static Category Find(int searchId)
+    public static Stylist Find(int searchId)
     {
       return _instances[searchId-1];
     }
 
-    public void AddItem(Item item)
+    public void AddClient(Client client)
     {
-      Items.Add(item);
+      Clients.Add(client);
     }
 
   }
