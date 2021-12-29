@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using HairSalon.Models;
 using System.Collections.Generic;
 
-namespace ToDoList.Controllers
+namespace HairSalon.Controllers
 {
   public class ClientsController : Controller
   {
