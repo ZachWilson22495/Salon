@@ -4,32 +4,32 @@ using System.Collections.Generic;
 
 namespace ToDoList.Controllers
 {
-  public class ItemsController : Controller
+  public class ClientsController : Controller
   {
 
-    [HttpGet("/categories/{categoryId}/items/new")]
-    public ActionResult New(int categoryId)
+    [HttpGet("/categories/{stylistId}/clients/new")]
+    public ActionResult New(int stylistId)
     {
-      Category category = Category.Find(categoryId);
-      return View(category);
+      Stylist stylist = Stylist.Find(stylistId);
+      return View(stylist);
     }
 
-    [HttpPost("/items/delete")]
+    [HttpGet("/categories/{stylistId}/clients/{clientId}")]
+    public ActionResult Show(int stylistId, int clientId)
+    {
+      Client client = Client.Find(clientId);
+      Stylist stylist = Stylist.Find(stylistId);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("client", client);
+      model.Add("stylist", stylist);
+      return View(model);
+    }
+
+    [HttpPost("/clients/delete")]
     public ActionResult DeleteAll()
     {
-      Item.ClearAll();
+      Client.ClearAll();
       return View();
-    }
-
-    [HttpGet("/categories/{categoryId}/items/{itemId}")]
-    public ActionResult Show(int categoryId, int itemId)
-    {
-      Item item = Item.Find(itemId);
-      Category category = Category.Find(categoryId);
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("item", item);
-      model.Add("category", category);
-      return View(model);
     }
   }
 }

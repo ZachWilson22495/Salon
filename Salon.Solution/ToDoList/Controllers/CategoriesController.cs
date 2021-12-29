@@ -3,55 +3,55 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 
-namespace ToDoList.Controllers
+namespace Salon.Controllers
 {
-  public class CategoriesController : Controller
+  public class StylistsController : Controller
   {
 
-    [HttpGet("/categories")]
+    [HttpGet("/stylists")]
     public ActionResult Index()
     {
-      List<Category> allCategories = Category.GetAll();
-      return View(allCategories);
+      List<Stylist> allStylists = Stylist.GetAll();
+      return View(allStylists);
     }
 
-    [HttpGet("/categories/new")]
+    [HttpGet("/stylists/new")]
     public ActionResult New()
     {
       return View();
     }
 
-    [HttpPost("/categories")]
-    public ActionResult Create(string categoryName)
+    [HttpPost("/stylists")]
+    public ActionResult Create(string stylistName)
     {
-      Category newCategory = new Category(categoryName);
+      Stylist newStylist = new Stylist(stylistName);
       return RedirectToAction("Index");
     }
 
-    [HttpGet("/categories/{id}")]
+    [HttpGet("/stylists/{id}")]
     public ActionResult Show(int id)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      Category selectedCategory = Category.Find(id);
-      List<Item> categoryItems = selectedCategory.Items;
-      model.Add("category", selectedCategory);
-      model.Add("items", categoryItems);
+      Stylist selectedStylist = Stylist.Find(id);
+      List<Client> stylistClients = selectedStylist.Clients;
+      model.Add("stylist", selectedStylist);
+      model.Add("clients", stylistClients);
       return View(model);
     }
 
 
-    // This one creates new Items within a given Category, not new Categories:
+    // This one creates new clients within a given Stylist, not new Stylists:
 
-    [HttpPost("/categories/{categoryId}/items")]
-    public ActionResult Create(int categoryId, string itemDescription)
+    [HttpPost("/stylists/{stylistId}/clients")]
+    public ActionResult Create(int stylistId, string clientDescription)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      Category foundCategory = Category.Find(categoryId);
-      Item newItem = new Item(itemDescription);
-      foundCategory.AddItem(newItem);
-      List<Item> categoryItems = foundCategory.Items;
-      model.Add("items", categoryItems);
-      model.Add("category", foundCategory);
+      Stylist foundStylist = Stylist.Find(stylistId);
+      Client newClient = new Client(clientDescription);
+      foundStylist.AddClient(newClient);
+      List<Client> stylistClients = foundStylist.Clients;
+      model.Add("clients", stylistClients);
+      model.Add("stylist", foundStylist);
       return View("Show", model);
     }
 
