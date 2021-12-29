@@ -4,12 +4,15 @@
 
 @using HairSalon.Models;
 
+<h2>@Model["stylist"].StylistName</h2>
+<h4>@Model["stylist"].StylistDescription</h4>
+
 <h3>These are all the relevant clients:</h3>
 
 <ol>
 @foreach (Client client in @Model["clients"])
 {
-  <li><a href='/stylists/@Model["stylist"].Id/clients/@client.Id'>@client.Description</a></li>
+  <li><a href='/stylists/@Model["stylist"].Id/clients/@client.Id'>@client.ClientName</a></li>
 }
 </ol>
 

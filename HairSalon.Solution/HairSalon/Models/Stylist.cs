@@ -5,13 +5,15 @@ namespace HairSalon.Models
   public class Stylist
   {
     private static List<Stylist> _instances = new List<Stylist> {};
-    public string Name { get; set; }
+    public string StylistName { get; set; }
+    public string StylistDescription { get; set; }
     public int Id { get; }
     public List<Client> Clients { get; set; }
 
-    public Stylist(string stylistName)
+    public Stylist(string stylistName, string stylistDescription)
     {
-      Name = stylistName;
+      StylistName = stylistName;
+      StylistDescription = stylistDescription;
       _instances.Add(this);
       Id = _instances.Count;
       Clients = new List<Client>{};

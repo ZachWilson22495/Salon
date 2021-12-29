@@ -22,9 +22,9 @@ namespace Salon.Controllers
     }
 
     [HttpPost("/stylists")]
-    public ActionResult Create(string stylistName)
+    public ActionResult Create(string stylistName, string stylistDescription)
     {
-      Stylist newStylist = new Stylist(stylistName);
+      Stylist newStylist = new Stylist(stylistName, stylistDescription);
       return RedirectToAction("Index");
     }
 
@@ -40,14 +40,12 @@ namespace Salon.Controllers
     }
 
 
-    // This one creates new clients within a given Stylist, not new Stylists:
-
     [HttpPost("/stylists/{stylistId}/clients")]
-    public ActionResult Create(int stylistId, string clientDescription)
+    public ActionResult Create(int stylistId, string clientName, string clientDescription)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Stylist foundStylist = Stylist.Find(stylistId);
-      Client newClient = new Client(clientDescription);
+      Client newClient = new Client(clientName, clientDescription);
       foundStylist.AddClient(newClient);
       List<Client> stylistClients = foundStylist.Clients;
       model.Add("clients", stylistClients);
