@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ToDoList.Models.Client
+
+<h2>Edit</h2>
+
+<h4>Edit this task: @Html.DisplayFor(model => model.ClientName)</h4>
+
+<h4>Edit this task: @Html.DisplayFor(model => model.ClientDescription)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ClientId)
+
+    @Html.LabelFor(model => model.ClientName)
+    @Html.EditorFor(model => model.ClientName)
+    @Html.LabelFor(model => model.ClientDescription)
+    @Html.EditorFor(model => model.ClientDescription)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
