@@ -20,10 +20,27 @@ _A webpage developed for 'Claire's Hair Salon.' This application keeps track of 
 
 * Clone this repository to your Desktop
 * Open 'HairSalon' in your code editor
-* Use your terminal to navigate to 'HairSalon.Solution/HairSalon' and run 'dotnet restore' in your terminal to install bin & obj folders.
-* Use your terminal to navigate to 'HairSalon.Solution/HairSalon.Tests' and run 'dotnet test' in your terminal to see if all tests passed.
+* Use your terminal to navigate to 'HairSalon.Solution/HairSalon' and create a file called 'appsettings.json'
+* Fill your appsettings.json file with the code below:
+
+{
+"ConnectionStrings": {
+"DefaultConnection": "Server=localhost;Port=3306;database=zach_wilson;uid=root;pwd=[YOUR PASSWORD];"
+}
+}
+
+* Download MySQL and MySQL Workbench to set up a local database
+* Once installed, open MyMql Workbench and open a local server
+* In the Navigator, select the Administration tab and then select Data Import/Restore
+* Under Import Options, select Import From Self-Contained File, and then select the "zach_wilson.sql" file which can be found in HairSalon.Solution
+* In the Default Schema to be Imported To option, select New
+* Enter the name 'zach_wilson' for your database and select OK
+* Click Start Import to begin database import
+
+* Run 'dotnet restore' in your terminal to install bin & obj folders.
+
 * Use your terminal to navigate back to 'HairSalon.Solution/HairSalon' and run 'dotnet run' to activate application.
-* Answer the questions provided to you by the application 
+* Use the user interface provided by the webpage to manage stylists and clients.
 
 ## Known Bugs
 

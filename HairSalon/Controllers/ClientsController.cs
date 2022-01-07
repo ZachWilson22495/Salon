@@ -7,14 +7,13 @@ using System.Linq;
 
 namespace HairSalon.Controllers
 {
-  public class ClientsController : Controller
-  {
-
+    public class ClientsController : Controller
+    {
     private readonly HairSalonContext _db;
 
     public ClientsController(HairSalonContext db)
     {
-      _db = db;
+        _db = db;
     }
 
     public ActionResult Index()
@@ -25,6 +24,7 @@ namespace HairSalon.Controllers
 
     public ActionResult Create()
     {
+        ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "StylistName");
         return View();
     }
 
@@ -45,6 +45,7 @@ namespace HairSalon.Controllers
     public ActionResult Edit(int id)
     {
         var thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+        ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "StylistName");
         return View(thisClient);
     }
 
@@ -70,30 +71,5 @@ namespace HairSalon.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
-
-    // [HttpGet("/stylists/{stylistId}/clients/new")]
-    // public ActionResult New(int stylistId)
-    // {
-    //   Stylist stylist = Stylist.Find(stylistId);
-    //   return View(stylist);
-    // }
-
-    // [HttpGet("/stylists/{stylistId}/clients/{clientId}")]
-    // public ActionResult Show(int stylistId, int clientId)
-    // {
-    //   Client client = Client.Find(clientId);
-    //   Stylist stylist = Stylist.Find(stylistId);
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   model.Add("client", client);
-    //   model.Add("stylist", stylist);
-    //   return View(model);
-    // }
-
-    // [HttpPost("/clients/delete")]
-    // public ActionResult DeleteAll()
-    // {
-    //   Client.ClearAll();
-    //   return View();
-    // }
-  }
+    }
 }

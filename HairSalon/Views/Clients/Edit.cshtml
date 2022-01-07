@@ -2,13 +2,11 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Client
+@model HairSalon.Models.Client
 
 <h2>Edit</h2>
 
-<h4>Edit this task: @Html.DisplayFor(model => model.ClientName)</h4>
-
-<h4>Edit this task: @Html.DisplayFor(model => model.ClientDescription)</h4>
+<h4>Edit this patient: @Html.DisplayFor(model => model.ClientName)</h4>
 
 @using (Html.BeginForm())
 {
@@ -16,9 +14,13 @@
 
     @Html.LabelFor(model => model.ClientName)
     @Html.EditorFor(model => model.ClientName)
+
     @Html.LabelFor(model => model.ClientDescription)
     @Html.EditorFor(model => model.ClientDescription)
 
-    <input type="submit" value="Save" />
+    @Html.LabelFor(model => model.Stylist)
+    @Html.DropDownList("StylistId")
+
+    <input type="submit" value="Save" class="btn btn-default"/>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
